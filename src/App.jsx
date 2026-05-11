@@ -5,15 +5,20 @@ function App() {
 
 
   const [actresses, setActresses] = useState([])
+  const [actors, setActor] = useState([])
   const apiUrl = 'https://lanciweb.github.io/demo/api/actresses/'
+  const apiUrl2 = ' https://lanciweb.github.io/demo/api/actors/'
 
-  function getActresses() {
+  function getActors() {
     fetch(apiUrl)
-      .then(res => res.json())
+      .then(resActress => resActress.json())
       .then(data => setActresses(data))
+    fetch(apiUrl2)
+      .then(resActors => resActors.json())
+      .then(data => setActor(data))
   }
 
-  useEffect(getActresses, [])
+  useEffect(getActors, [])
 
   return (
     <>
@@ -40,6 +45,38 @@ function App() {
                   </div>
                   <div>
                     <strong>Riconoscimenti: </strong>{actress.awards}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <h1>Actors</h1>
+      <div className="container">
+        <div className="row">
+          {actors.map(actor => (
+            <div className="col 12 col-sm-6 col-md-4" key={actor.id}>
+              <div className="card h-100">
+                <img src={actor.image} alt="" className='card-img-top actor-img' />
+                <div className="card-body">
+
+                  <div>
+                    <strong>Nome: </strong>{actor.name}
+                  </div>
+                  <div>
+                    <strong>Anno di Nascita: </strong>{actor.birth_year}
+                  </div>
+                  <div>
+                    <strong>Nazionalità: </strong>{actor.nationality}
+                  </div>
+                  <div>
+                    <strong>Biografia: </strong>{actor.biography}
+                  </div>
+                  <div>
+                    <strong>Riconoscimenti: </strong>{actor.awards}
                   </div>
 
                 </div>
