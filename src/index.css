@@ -1,2 +1,7 @@
 @import url('bootstrap');
 @import url('bootstrap-icons');
+
+.actress-img {
+    height: 500px;
+    object-fit: cover;
+}
